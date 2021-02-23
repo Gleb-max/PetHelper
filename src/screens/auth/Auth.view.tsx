@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   BackHandler,
+  StatusBar,
 } from 'react-native';
 
 //other deps
@@ -22,6 +23,7 @@ import {
   MontserratText,
   AppFeatureImage,
   AppFeatureText,
+  LoaderOverlay,
 } from 'library/components';
 
 //styles
@@ -32,6 +34,31 @@ type AuthViewProps = {
   authScreens: AuthItem[];
   activeIndex: number;
   setActiveIndex: (index: number) => void;
+  login: (data: {}) => void;
+  register: (data: {}) => void;
+  restore: (data: {}) => void;
+  isLoading: boolean;
+};
+
+type AuthFields = {
+  login: {
+    nickNameOrEmail: string;
+    password: string;
+  };
+  register: {
+    name: string;
+    nickName: string;
+    email: string;
+    password: string;
+  };
+  restore: {
+    email: string;
+  };
+};
+
+export type AuthItem = {
+  type: 'welcome' | 'login' | 'register' | 'restore';
+  image: NodeModule;
 };
 
 //values
@@ -39,15 +66,30 @@ let firstIndex = -1;
 let lastIndex = -1;
 let deque: number[] = [];
 
-export type AuthItem = {
-  type: 'welcome' | 'login' | 'register' | 'restore';
-  image: NodeModule;
+const authFieldsContent: AuthFields = {
+  login: {
+    nickNameOrEmail: '',
+    password: '',
+  },
+  register: {
+    name: '',
+    nickName: '',
+    email: '',
+    password: '',
+  },
+  restore: {
+    email: '',
+  },
 };
 
 export const AuthView: React.FC<AuthViewProps> = ({
   authScreens,
   activeIndex,
   setActiveIndex,
+  login,
+  register,
+  restore,
+  isLoading,
 }) => {
   //state
   const [viewportWidth, setViewportWidth] = React.useState(
@@ -91,7 +133,6 @@ export const AuthView: React.FC<AuthViewProps> = ({
       }
       return true;
     };
-    console.log(deque);
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       backAction,
@@ -164,26 +205,32 @@ export const AuthView: React.FC<AuthViewProps> = ({
           </View>
           <AuthForm style={styles.authForm}>
             <CustomTextInput
-              value=""
-              onChange={() => {}}
+              value={authFieldsContent.login.nickNameOrEmail}
+              onChange={(text: string) => {
+                authFieldsContent.login.nickNameOrEmail = text;
+              }}
               style={styles.authField}
-              placeholder="Ваш никнейм или почта"
+              renderType={'clear'}
+              placeholder={'Ваш никнейм или почта'}
             />
             <CustomTextInput
-              value=""
+              value={authFieldsContent.login.password}
               autoCapitalize={'sentences'}
-              onChange={() => {}}
+              onChange={(text: string) => {
+                authFieldsContent.login.password = text;
+              }}
               style={styles.authField}
               isPassword={true}
-              placeholder="Пароль"
+              renderType={'visible'}
+              placeholder={'Пароль'}
             />
           </AuthForm>
         </View>
         <View style={styles.authButtonsContainer}>
           <AuthButton
-            text="Войти"
+            text={'Войти'}
             style={styles.authButton}
-            onPress={() => console.log('login')}
+            onPress={() => login({data: {}})}
           />
           <TouchableOpacity onPress={() => _goTo(3)} style={styles.restoreLink}>
             <MontserratText style={styles.linkText} size={'m2'} type={'Medium'}>
@@ -211,43 +258,55 @@ export const AuthView: React.FC<AuthViewProps> = ({
           </View>
           <AuthForm style={styles.authForm}>
             <CustomTextInput
-              value=""
+              value={authFieldsContent.register.name}
               autoCapitalize={'sentences'}
-              onChange={() => {}}
+              onChange={(text: string) => {
+                authFieldsContent.register.name = text;
+              }}
               style={styles.authField}
-              placeholder="Ваше имя"
+              renderType={'clear'}
+              placeholder={'Ваше имя'}
             />
             <CustomTextInput
-              value=""
+              value={authFieldsContent.register.nickName}
               autoCapitalize={'sentences'}
-              onChange={() => {}}
+              onChange={(text: string) => {
+                authFieldsContent.register.nickName = text;
+              }}
               style={styles.authField}
-              placeholder="Ваш никнейм"
+              renderType={'clear'}
+              placeholder={'Ваш никнейм'}
             />
             <CustomTextInput
-              value=""
+              value={authFieldsContent.register.email}
               autoCapitalize={'sentences'}
-              onChange={() => {}}
+              onChange={(text: string) => {
+                authFieldsContent.register.email = text;
+              }}
               style={styles.authField}
               keyboardType={'email-address'}
-              placeholder="Ваша почта"
+              renderType={'clear'}
+              placeholder={'Ваша почта'}
             />
             <CustomTextInput
-              value=""
+              value={authFieldsContent.register.password}
               autoCapitalize={'sentences'}
-              onChange={() => {}}
+              onChange={(text: string) => {
+                authFieldsContent.register.password = text;
+              }}
               style={styles.authField}
               keyboardType={'numeric'}
               isPassword={true}
-              placeholder="Пароль"
+              renderType={'visible'}
+              placeholder={'Пароль'}
             />
           </AuthForm>
         </View>
         <View style={styles.authButtonsContainer}>
           <AuthButton
-            text="Зарегистрироваться"
+            text={'Зарегистрироваться'}
             style={styles.authButton}
-            onPress={() => console.log('register')}
+            onPress={() => register({data: {}})}
           />
           <AuthQuestionNav
             question={'Есть аккаунт?'}
@@ -270,20 +329,23 @@ export const AuthView: React.FC<AuthViewProps> = ({
           />
           <AuthForm style={styles.authForm}>
             <CustomTextInput
-              value=""
+              value={authFieldsContent.restore.email}
               autoCapitalize={'sentences'}
-              onChange={() => {}}
+              onChange={(text: string) => {
+                authFieldsContent.restore.email = text;
+              }}
               style={styles.authField}
               keyboardType={'email-address'}
-              placeholder="Ваша почта"
+              renderType={'clear'}
+              placeholder={'Ваша почта'}
             />
           </AuthForm>
         </View>
         <View style={styles.authButtonsContainer}>
           <AuthButton
-            text="Отправить ссылку"
+            text={'Отправить ссылку'}
             style={styles.authButton}
-            onPress={() => console.log('restore')}
+            onPress={() => restore({data: {}})}
           />
           <MontserratText
             size={'m2'}
@@ -303,6 +365,12 @@ export const AuthView: React.FC<AuthViewProps> = ({
       start={{x: 0, y: 0}}
       onLayout={_onLayout}
       end={{x: 1, y: 1}}>
+      {isLoading && <LoaderOverlay size={'large'} />}
+      <StatusBar
+        barStyle={'light-content'}
+        backgroundColor={'transparent'}
+        translucent
+      />
       <Carousel
         ref={refCarousel}
         data={authScreens}

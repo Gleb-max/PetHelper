@@ -1,2 +1,2 @@
 export {AnimationConfig} from './AnimationConfig';
-export {useTabsAnimation} from './useTabsAnimation.animations';
+// export {useTabsAnimation} from './useTabsAnimation.animations';

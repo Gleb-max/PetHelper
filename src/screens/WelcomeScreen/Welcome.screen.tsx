@@ -1,5 +1,11 @@
 import React from 'react';
 
+//redux
+import {store} from 'redux/store';
+
+//actions
+import {welcomeComplete} from 'redux/actions';
+
 //views
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {WelcomeView, AppFeaturesItem} from './Welcome.view';
@@ -33,5 +39,10 @@ const appFeaturesInfo: AppFeaturesItem[] = [
 ];
 
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({}) => {
-  return <WelcomeView appFeaturesScreens={appFeaturesInfo} />;
+  return (
+    <WelcomeView
+      appFeaturesScreens={appFeaturesInfo}
+      onWelcomeComplete={() => store.dispatch(welcomeComplete())}
+    />
+  );
 };

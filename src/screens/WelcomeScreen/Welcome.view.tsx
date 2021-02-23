@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Dimensions, ScrollView} from 'react-native';
+import {View, Dimensions, ScrollView, StatusBar} from 'react-native';
 
 //other deps
 import Carousel from 'react-native-snap-carousel';
@@ -13,6 +13,7 @@ import styles from './Welcome.styles';
 //types
 type WelcomeViewProps = {
   appFeaturesScreens: AppFeaturesItem[];
+  onWelcomeComplete: () => void;
 };
 
 export type AppFeaturesItem = {
@@ -22,6 +23,7 @@ export type AppFeaturesItem = {
 
 export const WelcomeView: React.FC<WelcomeViewProps> = ({
   appFeaturesScreens,
+  onWelcomeComplete,
 }) => {
   //state
   const [viewportWidth, setViewportWidth] = React.useState(
@@ -42,6 +44,11 @@ export const WelcomeView: React.FC<WelcomeViewProps> = ({
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}>
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={'transparent'}
+          translucent
+        />
         <View style={styles.featureScreen}>
           <AppFeatureImage logo={item.image} style={styles.image} />
           <View style={styles.contentContainer}>
@@ -49,7 +56,7 @@ export const WelcomeView: React.FC<WelcomeViewProps> = ({
             <NextButton
               onPress={() =>
                 index === 3
-                  ? console.log('auth')
+                  ? onWelcomeComplete()
                   : refCarousel.current.snapToNext(true)
               }
               style={styles.nextButton}

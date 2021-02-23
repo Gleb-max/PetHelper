@@ -1,56 +1,30 @@
 import React from 'react';
-import {StyleProp, ViewStyle} from 'react-native';
-
-//animations
-import Animated from 'react-native-reanimated';
-import {useOverlayAnimations} from './LoaderOverlay.animations';
-
-//components
-import {Loader} from 'library/components/atoms';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {StyleProp, View, ViewStyle} from 'react-native';
 
 //styles
 import styles from './LoaderOverlay.styles';
 
-//types
-import {AnimationConfig} from 'library/animations';
+//components
+import {Loader} from 'library/components/atoms';
 
+//types
 type LoaderOverlayProps = {
-  isLoading?: boolean;
-  fadeColor?: string;
-  duration?: keyof typeof AnimationConfig.Duration;
+  size?: number | 'small' | 'large';
+  color?: string;
   style?: StyleProp<ViewStyle>;
+  loaderStyle?: StyleProp<ViewStyle>;
 };
 
 export const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
-  isLoading,
-  fadeColor,
-  duration = 'regular',
+  size = 'small',
+  color = '#5C3661',
   style,
+  loaderStyle,
 }) => {
-  //animation
-  const overlayAnimation = useOverlayAnimations(duration);
-
-  //effects
-  React.useEffect(() => {
-    if (isLoading) {
-      overlayAnimation.fadeIn();
-    } else {
-      overlayAnimation.fadeOut();
-    }
-  }, [isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
-    <Animated.View
-      pointerEvents="none"
-      style={[
-        styles.container,
-        {
-          backgroundColor: fadeColor,
-        },
-        overlayAnimation.animatedOverlay,
-        style,
-      ]}>
-      <Loader />
-    </Animated.View>
+    <View style={[styles.container, style]}>
+      <Loader color={color} size={size} style={loaderStyle} />
+    </View>
   );
 };

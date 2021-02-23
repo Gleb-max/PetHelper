@@ -25,9 +25,9 @@ export const NextButton: React.FC<NextButtonProps> = ({onPress, style}) => {
     <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
       <SMIcons
         name="ic_next"
-        width={26}
-        height={26}
-        size={26}
+        width={24}
+        height={24}
+        size={33}
         color={'#FFFFFF'}
         style={styles.icon}
       />

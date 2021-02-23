@@ -1,4 +1,3 @@
-export {LoaderOverlay} from './LoaderOverlay';
 export {NextButton} from './NextButton';
 export {AppFeatureText} from './AppFeatureText';
 export {AppFeatureImage} from './AppFeatureImage';
@@ -8,3 +7,5 @@ export {AuthForm} from './AuthForm';
 export {AuthTitle} from './AuthTitle';
 export {AuthQuestionNav} from './AuthQuestionNav';
 export {CustomTextInput} from './TextInput';
+export {TabBar, TabBarContainer} from './TabBar';
+export {LoaderOverlay} from './LoaderOverlay';
