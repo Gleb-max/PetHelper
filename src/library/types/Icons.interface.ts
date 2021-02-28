@@ -4,7 +4,15 @@ export type CommonIconName =
   | 'ic_next'
   | 'ic_clear'
   | 'ic_visible'
-  | 'ic_invisible';
+  | 'ic_invisible'
+  | 'ic_star'
+  | 'ic_scissors'
+  | 'ic_phone'
+  | 'ic_chicken'
+  | 'ic_question'
+  | 'ic_account'
+  | 'ic_search'
+  | 'ic_arrow_left';
 
 export type TabBarIconName =
   | 'ic_tabbar_home'

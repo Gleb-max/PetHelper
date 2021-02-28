@@ -11,10 +11,14 @@ import {
 
 //tab screens
 import {HomeNavigation} from 'screens/HomeScreen';
+import {MedicineNavigation} from 'screens/MedicineScreen';
+import {HealthNavigation} from 'screens/HealthScreen';
+import {SearchNavigation} from 'screens/SearchScreen';
 import {ProfileNavigation} from 'screens/ProfileScreen';
 
 //features navigators
-// import {NotificationsNavigation} from 'screens/NotificationsScreen';
+import {AddPetNavigation} from 'screens/AddPetScreen';
+import {AddMissingPetNavigation} from 'screens/AddMissingPetScreen';
 
 //components
 import {TabBarContainer} from 'library/components/molecules';
@@ -64,15 +68,15 @@ const routes: NavigationTypes.TabBarRouteConfig[] = [
   },
   {
     ...mapRouteNameToData['main/medicine'],
-    screen: HomeNavigation,
+    screen: MedicineNavigation,
   },
   {
     ...mapRouteNameToData['main/bone'],
-    screen: HomeNavigation,
+    screen: HealthNavigation,
   },
   {
     ...mapRouteNameToData['main/search'],
-    screen: HomeNavigation,
+    screen: SearchNavigation,
   },
   {
     ...mapRouteNameToData['main/profile'],
@@ -131,7 +135,12 @@ export const MainNavigation: React.FC<MainNavigationProps> = ({
   return (
     <MainNativeStack.Navigator
       screenOptions={{headerShown: false, stackAnimation: 'default'}}>
-      <MainNativeStack.Screen name="main" component={_renderBottomTabBar} />
+      <MainNativeStack.Screen name={'main'} component={_renderBottomTabBar} />
+      <MainNativeStack.Screen name={'add_pet'} component={AddPetNavigation} />
+      <MainNativeStack.Screen
+        name={'add_missing_pet'}
+        component={AddMissingPetNavigation}
+      />
     </MainNativeStack.Navigator>
   );
 };

@@ -3,13 +3,13 @@ import React from 'react';
 import {TouchableOpacity, ViewStyle, StyleProp, TextStyle} from 'react-native';
 
 //styles
-import styles from './AuthButton.styles';
+import styles from './StandardButton.styles';
 
 //components
 import {MontserratText} from 'library/components/atoms';
 
 //types
-type AuthButtonProps = {
+type StandardButtonProps = {
   onPress: () => void;
   text: string;
   style?: StyleProp<ViewStyle>;
@@ -17,7 +17,7 @@ type AuthButtonProps = {
   reverse?: boolean;
 };
 
-export const AuthButton: React.FC<AuthButtonProps> = ({
+export const StandardButton: React.FC<StandardButtonProps> = ({
   onPress,
   text,
   style,

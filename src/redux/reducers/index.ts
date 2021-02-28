@@ -3,11 +3,13 @@ import {combineReducers} from 'redux';
 import authReducer from './auth.reducer';
 import userReducer from './user.reducer';
 import welcomeReducer from './welcome.reducer';
+import searchReducer from './search.reducer';
 
 const reducers = {
   authReducer,
   userReducer,
   welcomeReducer,
+  searchReducer,
 };
 
 const appReducer = combineReducers(reducers);

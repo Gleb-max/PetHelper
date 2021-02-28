@@ -14,7 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 //components
 import {
-  AuthButton,
+  StandardButton,
   AuthImage,
   AuthForm,
   AuthQuestionNav,
@@ -172,11 +172,11 @@ export const AuthView: React.FC<AuthViewProps> = ({
         <AppFeatureImage logo={item.image} style={styles.imageWelcome} />
         <View style={styles.contentContainer}>
           <AppFeatureText
-            text={'Что то написано какая то фраза лалала'}
+            text={'Теперь ВАШ питомец будет под НАШЕЙ защитой'}
             textStyle={styles.text}
           />
           <View style={styles.authButtonsContainer}>
-            <AuthButton
+            <StandardButton
               text={'Зарегистрироваться'}
               style={styles.authButton}
               onPress={() => _goTo(2)}
@@ -227,7 +227,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
           </AuthForm>
         </View>
         <View style={styles.authButtonsContainer}>
-          <AuthButton
+          <StandardButton
             text={'Войти'}
             style={styles.authButton}
             onPress={() => login({data: {}})}
@@ -303,7 +303,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
           </AuthForm>
         </View>
         <View style={styles.authButtonsContainer}>
-          <AuthButton
+          <StandardButton
             text={'Зарегистрироваться'}
             style={styles.authButton}
             onPress={() => register({data: {}})}
@@ -342,7 +342,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
           </AuthForm>
         </View>
         <View style={styles.authButtonsContainer}>
-          <AuthButton
+          <StandardButton
             text={'Отправить ссылку'}
             style={styles.authButton}
             onPress={() => restore({data: {}})}

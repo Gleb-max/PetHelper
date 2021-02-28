@@ -32,8 +32,15 @@ type CustomTextInputProps = {
     | 'number-pad'
     | 'decimal-pad';
   isPassword?: boolean;
+  editable?: boolean;
+  baseColor?: string;
+  tintColor?: string;
+  textColor?: string;
+  lineWidth?: number;
+  activeLineWidth?: number;
   onChange?: (text: string) => void;
   style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
   labelTextStyle?: StyleProp<TextStyle>;
   onSubmitEditing?: () => void;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
@@ -47,7 +54,14 @@ export const CustomTextInput: React.FC<CustomTextInputProps> = ({
   placeholder,
   keyboardType = 'default',
   isPassword = false,
+  editable = true,
+  baseColor = '#FFFFFF',
+  tintColor = '#FFFFFF',
+  textColor = '#161844',
+  lineWidth = 1,
+  activeLineWidth = 2,
   style = styles.empty,
+  textStyle = styles.empty,
   labelTextStyle = styles.empty,
   onSubmitEditing,
   autoCapitalize = 'none',
@@ -108,25 +122,27 @@ export const CustomTextInput: React.FC<CustomTextInputProps> = ({
     <TextField
       ref={inputRef as React.LegacyRef<TextField>}
       onFocus={() => {}}
-      baseColor={'#FFFFFF'}
+      editable={editable}
+      baseColor={baseColor}
       value={value}
       onChangeText={_onChangeText}
       label={placeholder}
       keyboardType={keyboardType}
-      textColor={'#161844'}
+      textColor={textColor}
       labelFontSize={17}
       fontSize={18}
       error={error}
       clearButtonMode={'while-editing'}
       renderRightAccessory={_renderRightAccessory}
-      tintColor={'#FFFFFF'}
+      tintColor={tintColor}
       onSubmitEditing={onSubmitEditing}
       secureTextEntry={!isVisible}
       underlineColorAndroid={'transparent'}
-      lineWidth={1}
+      lineWidth={lineWidth}
+      activeLineWidth={activeLineWidth}
       textContentType={'password'}
       autoCorrect={false}
-      style={styles.text}
+      style={[styles.text, textStyle]}
       labelTextStyle={[styles.labelText, labelTextStyle]}
       containerStyle={[styles.container, style]}
       autoCapitalize={autoCapitalize}

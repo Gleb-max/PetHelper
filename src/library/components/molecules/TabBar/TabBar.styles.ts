@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   tabBarSpace: {
     height: TAB_BAR_HEIGHT + bottomInset - TAB_BAR_BORDER_RADIUS,
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
   },
   tabBarItem: {
     flex: 1,

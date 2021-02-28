@@ -5,7 +5,7 @@ import {Text, TextStyle, StyleProp} from 'react-native';
 //types
 type MontserratTextProps = {
   type: 'Medium' | 'Semibold';
-  size: 'm1' | 'm2';
+  size: 'm1' | 'm2' | 'm3' | 'm4' | 'm5' | 'm6';
   styleText?: StyleProp<TextStyle>;
   style?: StyleProp<TextStyle>;
   children: React.ReactNode;
@@ -25,6 +25,18 @@ export const MontserratText: React.FC<MontserratTextProps> = ({
       break;
     case 'm2':
       fontSize = 13;
+      break;
+    case 'm3':
+      fontSize = 15;
+      break;
+    case 'm4':
+      fontSize = 12;
+      break;
+    case 'm5':
+      fontSize = 14;
+      break;
+    case 'm6':
+      fontSize = 21;
       break;
     default:
       break;

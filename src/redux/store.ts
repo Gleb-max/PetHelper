@@ -11,7 +11,7 @@ import {rootReducer} from './reducers';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['authReducer', 'userReducer', 'welcomeReducer'],
+  whitelist: ['authReducer', 'userReducer', 'welcomeReducer', 'searchReducer'],
   blacklist: ['isLoading'],
 };
 

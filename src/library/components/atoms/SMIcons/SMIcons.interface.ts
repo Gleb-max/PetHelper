@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {TextStyle, StyleProp} from 'react-native';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {Icons} from 'library/types';
 
 export type SMIconsProps = {

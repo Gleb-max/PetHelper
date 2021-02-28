@@ -1,6 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {ViewStyle, StyleProp, Image} from 'react-native';
+import {ViewStyle, StyleProp, Image, ImageSourcePropType} from 'react-native';
 
 //styles
 import styles from './AuthImage.styles';
@@ -12,5 +12,7 @@ type AuthImageProps = {
 };
 
 export const AuthImage: React.FC<AuthImageProps> = ({style, logo}) => {
-  return <Image source={logo} style={[styles.image, style]} />;
+  return (
+    <Image source={logo as ImageSourcePropType} style={[styles.image, style]} />
+  );
 };
